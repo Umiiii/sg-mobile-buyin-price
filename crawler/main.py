@@ -1,12 +1,9 @@
 import requests
 import logging
 import datetime
-import pandas as pd
-from io import StringIO
 import os
 import csv
 from  bs4 import BeautifulSoup
-from lxml import etree
 now = datetime.datetime.now()
 nowstr = now.strftime("%Y%m%d%H%M%S")
 timestr = "{}".format(nowstr)
