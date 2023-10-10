@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main  # or the name of your default branch
+  schedule:
+    - cron: "*/5 * * * *"
 
 jobs:
   build:
@@ -21,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install requests beautifulsoup4 logging
+        pip install requests beautifulsoup4 logging pandas lxml
 
     - name: Run script
       run: python crawler/main.py
