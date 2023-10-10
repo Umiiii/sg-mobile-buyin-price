@@ -13,17 +13,18 @@ logpath = "logs/{}.log".format(timestr)
 def is_local():
     env_dict = os.environ
     return 'GITHUB_TOKEN' not in env_dict
-
-if is_local():
-    logging.basicConfig(level=logging.DEBUG,
-                    filename=None,
-                    datefmt='%Y/%m/%d %H:%M:%S',
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(lineno)d - %(module)s - %(message)s')
-else:
-    logging.basicConfig(level=logging.DEBUG,
-                    filename=logpath,
-                    datefmt='%Y/%m/%d %H:%M:%S',
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(lineno)d - %(module)s - %(message)s')
+    
+logging.info(is_local())
+# if is_local():
+#     logging.basicConfig(level=logging.DEBUG,
+#                     filename=None,
+#                     datefmt='%Y/%m/%d %H:%M:%S',
+#                     format='%(asctime)s - %(name)s - %(levelname)s - %(lineno)d - %(module)s - %(message)s')
+# else:
+logging.basicConfig(level=logging.DEBUG,
+                filename=logpath,
+                datefmt='%Y/%m/%d %H:%M:%S',
+                format='%(asctime)s - %(name)s - %(levelname)s - %(lineno)d - %(module)s - %(message)s')
 
 logger = logging.getLogger(__name__)
 
@@ -76,5 +77,5 @@ if __name__ == "__main__":
     raw_html_data = fetch()
     
     new_data, used_data = parse(raw_html_data)
-    export_to_csv(new_data, f"{timestr}_new.csv")
-    export_to_csv(used_data, f"{timestr}_used.csv")
+    export_to_csv(new_data, f"data/{timestr}_new.csv")
+    export_to_csv(used_data, f"data/{timestr}_used.csv")
